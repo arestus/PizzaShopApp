@@ -20,6 +20,7 @@ namespace PizzaOrderingSystemWebMVC.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.Name = TempData["username"];
             return View();
         }
 

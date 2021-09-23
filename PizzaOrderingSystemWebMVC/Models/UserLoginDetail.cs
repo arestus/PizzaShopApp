@@ -14,10 +14,16 @@ namespace PizzaOrderingSystemWebMVC.Models
         }
         [Key]
         public int UserId { get; set; }
+        
         public string UserMail { get; set; }
+        
         public string UserName { get; set; }
+       
+        [DataType(DataType.Password)]
         public string UserPassword { get; set; }
+      
         public string UserAddress { get; set; }
+       
         public string UserPhone { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }

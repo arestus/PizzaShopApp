@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PizzaOrderingSystemWebMVC.Models;
+using PizzaOrderingSystemWebMVC.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,9 +25,15 @@ namespace PizzaOrderingSystemWebMVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string connection = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<pizzaContext>(options => options.UseSqlServer(connection));
+            //string connection = Configuration.GetConnectionString("DefaultConnection");
+            //services.AddDbContext<pizzaContext>(options => options.UseSqlServer(connection));
             services.AddControllersWithViews();
+
+            services.AddDbContext<pizzaContext>(options =>
+            {
+                options.UseSqlServer(Configuration["ConnectionStrings:pizzaapp"]);
+            });
+            services.AddScoped<IRepo<UserLoginDetail>, UserRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
