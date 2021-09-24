@@ -218,3 +218,6 @@ C:\Users\Administrator\Desktop\Trail\PizzaOrderingSystemWebMVC\bin\Debug\net5.0\
 C:\Users\Administrator\Desktop\Trail\PizzaOrderingSystemWebMVC\obj\Debug\net5.0\Razor\Views\User\UserRegistration.cshtml.g.cs
 C:\Users\Administrator\Desktop\Trail\PizzaOrderingSystemWebMVC\obj\Debug\net5.0\Razor\Views\Home\Index1.cshtml.g.cs
 C:\Users\Administrator\Desktop\Trail\PizzaOrderingSystemWebMVC\obj\Debug\net5.0\Razor\Views\User\UserLogin.cshtml.g.cs
+C:\Users\Administrator\Desktop\Trail\PizzaOrderingSystemWebMVC\obj\Debug\net5.0\Razor\Views\Order\Orders.cshtml.g.cs
+C:\Users\Administrator\Desktop\Trail\PizzaOrderingSystemWebMVC\obj\Debug\net5.0\Razor\Views\Order\Index.cshtml.g.cs
+C:\Users\Administrator\Desktop\Trail\PizzaOrderingSystemWebMVC\obj\Debug\net5.0\Razor\Views\User\Orders.cshtml.g.cs

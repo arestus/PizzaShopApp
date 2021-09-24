@@ -12,15 +12,30 @@ namespace PizzaOrderingSystemWebMVC.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly pizzaContext _context;
+        public HomeController(ILogger<HomeController> logger, pizzaContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            ViewBag.Name = TempData["username"];
+            ViewBag.UserName = TempData["username"];
+            foreach (var item in _context.PizzaDetails )
+            {
+                ViewBag.Name = item.PizzaName;
+                ViewBag.Price = item.PizzaPrice;
+                ViewBag.Type = item.PizzaType;
+
+            }
+            foreach (var items in _context.Toppings)
+            {
+                ViewBag.Topping = items.ToppingName;
+                ViewBag.Price = items.ToppingPrice;
+              
+
+            }
             return View();
         }
 

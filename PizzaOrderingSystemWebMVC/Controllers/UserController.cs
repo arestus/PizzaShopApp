@@ -39,8 +39,10 @@ namespace PizzaOrderingSystemWebMVC.Controllers
            
             if (_context.UserLoginDetails.Where(e => e.UserMail == user.UserMail && e.UserPassword == user.UserPassword).Any())
             {
-                TempData["username"] = user.UserName;
-                return RedirectToAction("Index", "Home");
+                TempData["username"] = user.UserMail;
+                 // return RedirectToAction("Index", "Home");
+                return RedirectToAction("Orders", "Order");
+                //  return RedirectToAction("Orders", "Order");
             }
             else
             {
@@ -48,7 +50,20 @@ namespace PizzaOrderingSystemWebMVC.Controllers
             }
             return View();
         }
-       
+        //public IActionResult Orders()
+        //{
+        //    return View();
+        //}
+        //[HttpPost]
+        //public IActionResult Orders(PizzaDetail pizz)
+        //{
+        //    string name ="sdfName";
+        //    TempData["PizzaName"] = name;
+        //     return RedirectToAction(" Orders", "Order");
+        //    // return View();
+        //}
+
+
 
     }
 }

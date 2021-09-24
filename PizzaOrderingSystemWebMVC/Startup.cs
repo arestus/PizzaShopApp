@@ -34,6 +34,7 @@ namespace PizzaOrderingSystemWebMVC
                 options.UseSqlServer(Configuration["ConnectionStrings:pizzaapp"]);
             });
             services.AddScoped<IRepo<UserLoginDetail>, UserRepo>();
+           // services.AddScoped<IRepo<PizzaDetail>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

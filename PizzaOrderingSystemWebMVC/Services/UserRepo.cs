@@ -41,6 +41,18 @@ namespace PizzaOrderingSystemWebMVC.Services
             return null;
         }
 
-        
+        public ICollection<PizzaDetail> GetAll()
+        {
+            IList<PizzaDetail> employees = _context.PizzaDetails.ToList();
+            if (employees.Count > 0)
+                return employees;
+            else
+                return null;
+        }
+
+        ICollection<UserLoginDetail> IRepo<UserLoginDetail>.GetAll()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

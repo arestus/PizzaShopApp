@@ -8,6 +8,6 @@ namespace PizzaOrderingSystemWebMVC.Services
     public interface IRepo <K>
     {
         K Add(K k);
-       
+        ICollection<K> GetAll();
     }
 }
