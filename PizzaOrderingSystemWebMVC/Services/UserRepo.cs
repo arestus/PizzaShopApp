@@ -41,18 +41,43 @@ namespace PizzaOrderingSystemWebMVC.Services
             return null;
         }
 
+        public UserLoginDetail Delete(int id)
+        {
+            return null;
+        }
+
+        public UserLoginDetail Get(int id)
+        {
+            UserLoginDetail employee = null;
+            try
+            {
+                employee = _context.UserLoginDetails.FirstOrDefault(e => e.UserId == id);
+            }
+            catch (ArgumentException ae)
+            {
+                Console.WriteLine(ae.Message);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return employee;
+        }
+
         public ICollection<PizzaDetail> GetAll()
         {
-            IList<PizzaDetail> employees = _context.PizzaDetails.ToList();
-            if (employees.Count > 0)
-                return employees;
-            else
+            
                 return null;
+        }
+
+        public UserLoginDetail Update(UserLoginDetail k)
+        {
+            return null;
         }
 
         ICollection<UserLoginDetail> IRepo<UserLoginDetail>.GetAll()
         {
-            throw new NotImplementedException();
+            return null;
         }
     }
 }

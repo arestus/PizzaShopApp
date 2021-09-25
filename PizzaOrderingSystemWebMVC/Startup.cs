@@ -31,10 +31,14 @@ namespace PizzaOrderingSystemWebMVC
 
             services.AddDbContext<pizzaContext>(options =>
             {
-                options.UseSqlServer(Configuration["ConnectionStrings:pizzaapp"]);
+                options.UseSqlServer(Configuration["ConnectionStrings:pizzaappp"]);
             });
             services.AddScoped<IRepo<UserLoginDetail>, UserRepo>();
-           // services.AddScoped<IRepo<PizzaDetail>>();
+            services.AddScoped<IRepo<PizzaDetail>, SummaryRepo>();
+            services.AddScoped<IRepo<Order>, OrderRepo>();
+            services.AddScoped<IRepo<Topping>, ToppingRepo>();
+
+            // services.AddScoped<IRepo<PizzaDetail>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

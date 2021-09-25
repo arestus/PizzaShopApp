@@ -1,0 +1,47 @@
+﻿@model IEnumerable<PizzaOrderingSystemWebMVC.Models.PizzaDetail>
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PizzaName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PizzaPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PizzaType)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PizzaName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PizzaPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PizzaType)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PizzaNumber">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PizzaNumber">Add</a> |
+                <a asp-action="Delete" asp-route-id="@item.PizzaNumber">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

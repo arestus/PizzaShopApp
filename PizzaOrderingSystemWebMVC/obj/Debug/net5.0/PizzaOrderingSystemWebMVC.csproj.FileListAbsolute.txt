@@ -221,3 +221,10 @@ C:\Users\Administrator\Desktop\Trail\PizzaOrderingSystemWebMVC\obj\Debug\net5.0\
 C:\Users\Administrator\Desktop\Trail\PizzaOrderingSystemWebMVC\obj\Debug\net5.0\Razor\Views\Order\Orders.cshtml.g.cs
 C:\Users\Administrator\Desktop\Trail\PizzaOrderingSystemWebMVC\obj\Debug\net5.0\Razor\Views\Order\Index.cshtml.g.cs
 C:\Users\Administrator\Desktop\Trail\PizzaOrderingSystemWebMVC\obj\Debug\net5.0\Razor\Views\User\Orders.cshtml.g.cs
+C:\Users\Administrator\Desktop\Trail\PizzaOrderingSystemWebMVC\bin\Debug\net5.0\Models\appsettings.Development.json
+C:\Users\Administrator\Desktop\Trail\PizzaOrderingSystemWebMVC\obj\Debug\net5.0\Razor\Views\Order\Details.cshtml.g.cs
+C:\Users\Administrator\Desktop\Trail\PizzaOrderingSystemWebMVC\obj\Debug\net5.0\Razor\Views\Order\PizzaList.cshtml.g.cs
+C:\Users\Administrator\Desktop\Trail\PizzaOrderingSystemWebMVC\obj\Debug\net5.0\Razor\Views\Order\Billing.cshtml.g.cs
+C:\Users\Administrator\Desktop\Trail\PizzaOrderingSystemWebMVC\obj\Debug\net5.0\Razor\Views\Order\bill.cshtml.g.cs
+C:\Users\Administrator\Desktop\Trail\PizzaOrderingSystemWebMVC\obj\Debug\net5.0\Razor\Views\Order\Index1.cshtml.g.cs
+C:\Users\Administrator\Desktop\Trail\PizzaOrderingSystemWebMVC\obj\Debug\net5.0\Razor\Views\Sumarry\Index.cshtml.g.cs

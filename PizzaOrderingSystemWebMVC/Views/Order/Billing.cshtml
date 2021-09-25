@@ -1,0 +1,46 @@
+﻿@model PizzaOrderingSystemWebMVC.Models.PizzaDetail
+
+@{
+    ViewData["Title"] = "Billing";
+}
+
+<h1>Billing</h1>
+
+<h4>PizzaDetail</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Billing">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="PizzaName" class="control-label"></label>
+                <input asp-for="PizzaName" class="form-control" />
+                <span asp-validation-for="PizzaName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PizzaPrice" class="control-label"></label>
+                <input asp-for="PizzaPrice" class="form-control" />
+                <span asp-validation-for="PizzaPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PizzaType" class="control-label"></label>
+                <input asp-for="PizzaType" class="form-control" />
+                <span asp-validation-for="PizzaType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+               <a asp-action="bill" >Add</a>
+
+                <input type="submit" value="Create" class="btn btn-primary" />
+
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

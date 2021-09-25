@@ -13,54 +13,108 @@
 </head>
 <body>
 
-    <h4>PizzaDetail</h4>
-    <hr />
-    <div class="text-center">
-        <h1 class="display-4">  Piiza Name : @ViewBag.Name </h1>
-        <h1 class="display-4">
-            Pizza Price   @ViewBag.Price
-        </h1>
-        <h1 class="display-4"> pizza type   @ViewBag.Type </h1>
-
-
-        <h1 class="display-4"> Topping :   @ViewBag.Topping </h1>
-
-        <h1 class="display-4"> Topping :   @ViewBag.Price </h1>
-        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    </div>
     <div class="row">
         <div class="col-md-4">
-            <form asp-action="Orders">
+            @*<form asp-action="Orders">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="PizzaName"></label>
-                    <p>    @ViewBag.Name </p>
-                    <input asp-for="PizzaName" />
-                    <span asp-validation-for="PizzaName" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="PizzaPrice"></label>
-                    @ViewBag.Price
-                    <input asp-for="PizzaPrice" />
-                    <span asp-validation-for="PizzaPrice" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="PizzaType"></label>
-
-
-                    <input asp-for="PizzaType" />
-                    <span asp-validation-for="PizzaType" class="text-danger"></span>
-                </div>
+                   
+                   
                 <div class="form-group">
                     <input type="submit" value="Create" class="btn btn-primary" />
                 </div>
-            </form>
+            </form>*@
         </div>
     </div>
 
-    <div>
-        <a asp-action="Index">Back to List</a>
-    </div>
-
+   
 </body>
 </html>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/normalize.css">
+    <link rel="stylesheet" href="/css/HomePage.css">
+</head>
+<body>
+    
+    <header class="header">
+        <section class="container">
+            <div class="header-block">
+                <a class="logo-link">
+                    BIPR Pizza
+                </a>
+                <ul class="header-info">
+                    <li>Home</li>
+                    <li>Products</li>
+                    <li>Company</li>
+                    <li>More</li>
+                </ul>
+            </div>
+        </section>
+    </header>
+    <main>
+        <form asp-action="Orders">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+            <div class="form-group">
+                <input type="submit" value="ShopNow" class="btn btn-primary" />
+            </div>
+        </form>
+        <section class="container">
+            <div class="homepage-main">
+                <div class="homepage-buttons">
+                    <ul class="buttons-list">
+                        @*<li class="menu-button"><button class="button-link">Registration</button></li>
+                        <li class="menu-button"><button class="button-link">Login</button></li>
+                        <li class="menu-button"><button class="button-link">Exit</button></li>*@
+                        <li class="menu-button"><a href="/User/UserRegistration" class="button-link">Registration</a></li>
+                        <li class="menu-button"><a href="/User/UserLogin" class="button-link">Login</a></li>
+
+                        <li class="menu-button"><a class="button-link">Exit</a></li>
+                    </ul>
+                </div>
+                <div class="discount-info">
+                    <h2>Promotions and discounts!</h2>
+                    <p>
+                        Every Tuesday we have a special offer! When ordering 3 pizzas, every 4th is for free!
+                        The promotion is valid only for delivery! Other bonuses, discounts and promotions do not apply to this offer.
+                    </p>
+                    <img src="~/Images/discount-image.png" alt="discount-image" class="discount-image" />
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <section class="container">
+            <div class="footer-info">
+                <div>
+                    <p>BIPR Pizza</p>
+                    <address>
+                        <p>
+                            Royapuram
+                            Chennai, Tamil Nadu 600013
+                            India
+                        </p>
+                        <ul>
+                            <li>bipr-pizza@gmail.com</li>
+                            <li>+380 93 777 77 77</li>
+                        </ul>
+                    </address>
+                </div>
+            </div>
+        </section>
+    </footer>
+</body>
+</html>
+

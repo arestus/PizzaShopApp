@@ -8,34 +8,84 @@ using System.Threading.Tasks;
 
 namespace PizzaOrderingSystemWebMVC.Controllers
 {
-
+   
     public class OrderController : Controller
     {
+        private readonly IRepo<PizzaDetail> _repo;
+        private readonly IRepo<Order> _repos;
         private readonly pizzaContext _context;
-       
-        public OrderController(pizzaContext context)
+        private readonly IRepo<Topping> _tops;
+        private readonly UserLoginDetail _cont;
+
+
+        public OrderController(IRepo<PizzaDetail> repo, IRepo<Order> repos,pizzaContext context, IRepo<Topping> tops)
         {
+            _repo = repo;
+            _repos = repos;
             _context = context;
+            _tops = tops;
+           
         }
-      
-      
-        public IActionResult Orders()
+
+        //public IActionResult Orders(int id)
+        //{
+        //    //if (_context.UserLoginDetails.Where(e => e.UserMail == user.UserMail).Any())
+        //    //{
+        //    return (_context.Get(id));
+
+        //}
+        public IActionResult PizzaList(PizzaDetail pizz)
         {
-            foreach (var item in _context.PizzaDetails)
-            {
-                ViewBag.Name = item.PizzaName;
-                ViewBag.Price = item.PizzaPrice;
-                ViewBag.Type = item.PizzaType;
+            
+           return View(_repo.GetAll());
+            // return View(_repo.Get(id));
 
-            }
-            foreach (var items in _context.Toppings)
-            {
-                ViewBag.Topping = items.ToppingName;
-                ViewBag.Price = items.ToppingPrice;
-
-
-            }
-            return View();
         }
+
+        public IActionResult Orders()
+        { return View();
+        }
+            [HttpPost]
+            public IActionResult Orders(PizzaDetail pizz)
+        {
+            ViewBag.Name = TempData["username"];
+            return RedirectToAction("PizzaList");
+        }
+        public IActionResult Billing(int id,UserLoginDetail user, PizzaDetail pizz)
+        {
+          
+            //return RedirectToAction("Index", "Sumarry");
+             return View(_repo.Get(id));
+           // return RedirectToAction("Index", "Sumarry");
+
+
+
+        }
+
+        public IActionResult bill (int id, PizzaDetail pizz)
+        {
+            TempData["pizzaname"] = pizz.PizzaName;
+            TempData["pizzaprice"] = pizz.PizzaPrice;
+
+            TempData["pizzatype"] = pizz.PizzaType;
+
+            return RedirectToAction("Index","Sumarry");
+            //TempData["pizzaprice"] = pizz.PizzaPrice;
+
+            //return RedirectToAction("Index", "Sumarry");
+           // return View(_tops.GetAll());
+            //  PizzaDetail pizz = new PizzaDetail();
+
+
+            //_repos.Add(or);
+
+        //    return View();
+
+
+        }
+
+
+
+
     }
 }
