@@ -15,7 +15,7 @@
 </head>
 <body>
 
-
+    
     <img src="~/Images/Firstimage.jpg" />
     <div class="row">
         <header> SIGN-IN</header>
@@ -24,9 +24,9 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                 <div class="form-group">
-                    @* <label asp-for="UserMail" class="control-label"></label>*@
+                   @* <label asp-for="UserMail" class="control-label"></label>*@
                     <span class="fa fa-user"></span>
-                    <input asp-for="UserMail" class="form-control" required placeholder="Email-Addres" />
+                    <input asp-for="UserMail" class="form-control" required placeholder="Email-Addres"/>
                     <span asp-validation-for="UserMail" class="text-danger"></span>
                 </div>
 
@@ -47,8 +47,7 @@
                 <br />
                 <br />
 
-                <div class="signup">
-                    Don't have account?<a href="http://localhost:63039/User/UserRegistration">Signup Now</a>
+                <div class="signup">Don't have account?<a href="http://localhost:63039/User/UserRegistration">Signup Now</a>
 
                 </div>
             </form>

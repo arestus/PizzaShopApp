@@ -12,4 +12,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Order\" />
+    <Folder Include="Views\User\" />
+  </ItemGroup>
+
 </Project>
