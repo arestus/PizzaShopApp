@@ -27,12 +27,16 @@ namespace PizzaOrderingSystemWebMVC
         {
             // string connection = Configuration.GetConnectionString("DefaultConnection");
             // services.AddDbContext<pizzaContext>(options => options.UseSqlServer(connection));
-            services.AddControllersWithViews();
             services.AddDbContext<pizzaContext>(options =>
             {
                 options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]);
             });
+            services.AddControllersWithViews();
             services.AddScoped<IRepo<UserLoginDetail>, UserRepo>();
+            services.AddScoped<IRepo<PizzaDetail>, PizzaRepo>();
+            services.AddScoped<IRepo<Topping>, ToppingRepo>();
+            services.AddScoped<IRepo<OrderItemDetail>, OrderItemRepo>();
+            services.AddScoped<IRepo<OrderDetail>, OrderDetailsRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

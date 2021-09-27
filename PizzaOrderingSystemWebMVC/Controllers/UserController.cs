@@ -42,7 +42,7 @@ namespace PizzaOrderingSystemWebMVC.Controllers
                 TempData["username"] = user.UserMail;
 
                  // return RedirectToAction("Index", "Home");
-                return RedirectToAction("Orders", "Order");
+                return RedirectToAction("Index", "Pizza");
                 //  return RedirectToAction("Orders", "Order");
             }
             else
@@ -63,8 +63,5 @@ namespace PizzaOrderingSystemWebMVC.Controllers
         //     return RedirectToAction(" Orders", "Order");
         //    // return View();
         //}
-
-
-
     }
 }
