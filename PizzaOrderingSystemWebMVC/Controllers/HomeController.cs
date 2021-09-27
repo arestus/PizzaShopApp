@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using PizzaOrderingSystemWebMVC.Models;
+using MVCPIzzaOrderingApplication.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PizzaOrderingSystemWebMVC.Controllers
+namespace MVCPIzzaOrderingApplication.Controllers
 {
     public class HomeController : Controller
     {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace PizzaOrderingSystemWebMVC.Models
+#nullable disable
+
+namespace PizzaOrderingApplication.Models
 {
     public partial class Order
     {

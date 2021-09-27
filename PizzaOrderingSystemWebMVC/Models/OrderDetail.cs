@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace PizzaOrderingSystemWebMVC.Models
+#nullable disable
+
+namespace PizzaOrderingApplication.Models
 {
     public partial class OrderDetail
     {
@@ -12,9 +11,8 @@ namespace PizzaOrderingSystemWebMVC.Models
         {
             OrderItemDetails = new HashSet<OrderItemDetail>();
         }
-        [Key]
+
         public int ItemNumber { get; set; }
-        
         public int? OrderId { get; set; }
         public int? PizzaNumber { get; set; }
 

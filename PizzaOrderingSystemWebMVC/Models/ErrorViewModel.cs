@@ -1,6 +1,6 @@
 using System;
 
-namespace PizzaOrderingSystemWebMVC.Models
+namespace MVCPIzzaOrderingApplication.Models
 {
     public class ErrorViewModel
     {

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<PizzaOrderingApplication.Models.OrderDetail>
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PizzaNumber)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PizzaNumber)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ItemNumber">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ItemNumber">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ItemNumber">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@foreach (var item in ViewBag.ItemDetails)
+{
+    <h5>@item.PizzaNumber</h5>
+}
+@foreach (var item in ViewBag.PizzaDetails)
+{
+    <h3>Pizza Name: @item.PizzaName</h3>
+    <h3>Pizza Price: @item.PizzaPrice</h3>
+    <h3>Pizza Type: @item.PizzaType</h3>
+}
+@foreach (var item in ViewBag.ToppingDetails)
+{
+    <h3>Topping Name: @item.ToppingName</h3>
+    <h3>Topping Price: @item.ToppingPrice</h3>
+    
+}
