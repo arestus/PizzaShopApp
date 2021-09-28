@@ -30,7 +30,7 @@ namespace PizzaOrderingSystemWebMVC
             services.AddControllersWithViews();
             services.AddDbContext<pizzaContext>(options =>
             {
-                options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]);
+                options.UseSqlServer(Configuration["ConnectionStrings:pizzaappp"]);
             });
             services.AddScoped<IRepo<UserLoginDetail>, UserRepo>();
         }
