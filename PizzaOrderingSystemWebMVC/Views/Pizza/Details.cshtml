@@ -1,51 +1,87 @@
 ﻿@model IEnumerable<PizzaOrderingSystemWebMVC.Models.Topping>
-    @{
-        ViewData["Title"] = "Details";
-    }
+@{
+    ViewData["Title"] = "Details";
+}
+@{ TempData["pizzaChoise"] = @ViewBag.thePizza.PizzaNumber;
+    TempData["pizzaPrice"] = @ViewBag.thePizza.PizzaPrice;
+
+}
+@{ TempData["id"] = @ViewBag.ids;
+
+}
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 
 
-    <h1>Details</h1>
+<h1>Details</h1>
 
-    <div>
-        <h4>Chose topping</h4>
-        <div class="row">
-            <div class="col-lg-4 mb-4">
-                <div class="card">
-                    <img src="/Images/Pizzas/@(ViewBag.thePizza.PizzaName).jpeg" class="card-img-top" alt="..." style="height: 230px;">
-                    <div class="card-body">
+<div>
+    <h4>Chose topping</h4>
+    <div class="row">
+        <div class="col-lg-4 mb-4">
+            <div class="card">
 
-                        <h5 class="card-title text-center">@ViewBag.thePizza.PizzaName</h5>
+                <img src="/Images/Pizzas/@(ViewBag.thePizza.PizzaName).jpeg" class="card-img-top" alt="..." style="height: 230px;">
+                <div class="card-body">
 
-                        <h6 class="card-text">Prise $@ViewBag.thePizza.PizzaPrice</h6>
-                        <h6 class="card-text">@ViewBag.thePizza.PizzaType</h6>
+                    <h5 class="card-title text-center">@ViewBag.thePizza.PizzaName</h5>
 
-                        <p class="card-text">Some pizza descriptions on the card title and make up the bulk of the card's content.</p>
-                    </div>
+                    <h6 class="card-text">Prise $@ViewBag.thePizza.PizzaPrice</h6>
+                    <h6 class="card-text">@ViewBag.thePizza.PizzaType</h6>
+
+                    <p class="card-text">Some pizza descriptions on the card title and make up the bulk of the card's content.</p>
                 </div>
             </div>
         </div>
     </div>
-    <form asp-action="Details" method="post">
-        <div class="col-lg-4 mb-4">
-            <h2>Chose topping</h2>
+</div>
+@using (Html.BeginForm("Details", "Pizza", FormMethod.Post))
+{
+<div>
+    Olives @Html.RadioButton("Olive", "1");
+    Tomato @Html.RadioButton("Olive", "2");
+    Cheese @Html.RadioButton("Olive", "3");
 
-            @foreach (var item in Model)
-            {
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="Toping" value="@item.ToppingNumber" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        @item.ToppingName    $@item.ToppingPrice
-                    </label>
-                </div>
-            }
+</div>
+  
 
 
 
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
 
-        </div>
 
-        <div class="form-group">
-            <input type="submit" value="Create" class="btn btn-primary" />
-        </div>
-    </form>
+    
+
+
+}
+@*<form asp-action="Details" method="post">
+    <div class="col-lg-4 mb-4">
+
+        <h2>Chose topping</h2>
+
+        @foreach (var item in Model)
+        {
+            <div class="form-check">
+                <input asp-for="@item.ToppingNumber" class="form-check-input" type="radio" name="Toping" value="@item.ToppingNumber" id="flexCheckDefault">
+
+
+                <label class="form-check-label" for="flexCheckDefault">
+                    @item.ToppingName    $@item.ToppingPrice
+
+                    @TempData["Id"] = @item.ToppingNumber;
+                </label>
+
+
+            </div>
+        }
+
+
+
+
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>*@

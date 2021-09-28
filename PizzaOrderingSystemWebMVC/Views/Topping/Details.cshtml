@@ -1,0 +1,44 @@
+﻿@model PizzaOrderingSystemWebMVC.Models.Topping
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<h1>Details</h1>
+
+<h4>Topping</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Details">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ToppingNumber" class="control-label"></label>
+                <input asp-for="ToppingNumber" class="form-control" />
+                <span asp-validation-for="ToppingNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ToppingName" class="control-label"></label>
+                <input asp-for="ToppingName" class="form-control" />
+                <span asp-validation-for="ToppingName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ToppingPrice" class="control-label"></label>
+                <input asp-for="ToppingPrice" class="form-control" />
+                <span asp-validation-for="ToppingPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@*@section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }*@
