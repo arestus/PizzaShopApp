@@ -1,4 +1,7 @@
-﻿.container {
+﻿body {
+    background-color: #efefef;
+}
+.container {
     width: 1200px;
     padding-left: 15px;
     padding-right: 15px;
@@ -88,4 +91,5 @@ li {
 
 .pb-3 {
     /*min-height: 600px;*/
+    background-color: white;
 }

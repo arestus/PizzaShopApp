@@ -37,6 +37,7 @@ namespace PizzaOrderingSystemWebMVC
             services.AddScoped<IRepo<Topping>, ToppingRepo>();
             services.AddScoped<IRepo<OrderItemDetail>, OrderItemRepo>();
             services.AddScoped<IRepo<OrderDetail>, OrderDetailsRepo>();
+            services.AddScoped<IRepo<Order>, OrderRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

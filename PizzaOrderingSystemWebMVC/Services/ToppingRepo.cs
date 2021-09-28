@@ -42,7 +42,20 @@ namespace PizzaOrderingSystemWebMVC.Services
 
         Topping IRepo<Topping>.Get(int id)
         {
-            throw new NotImplementedException();
+            Topping toping = null;
+            try
+            {
+                toping = _context.Toppings.FirstOrDefault(e => e.ToppingNumber == id);
+            }
+            catch (ArgumentException ae)
+            {
+                Console.WriteLine(ae.Message);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return toping;
         }
     }
 }
