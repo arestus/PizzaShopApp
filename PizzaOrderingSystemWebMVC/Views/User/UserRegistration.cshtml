@@ -1,19 +1,19 @@
 ﻿@model PizzaOrderingSystemWebMVC.Models.UserLoginDetail
 
-@{
+@*@{
     Layout = null;
-}
+}*@
 
-<!DOCTYPE html>
+@*<!DOCTYPE html>*@
 
-<html>
+<!--<-->@*html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width" />*@
     <title>UserRegistration</title>
-    <link rel="stylesheet" href="~/css/UserRegistration.css" />
+    <link rel="stylesheet" href="/css/UserRegistration.css" />
     
-</head>
-<body>
+@*</head>
+<body>*@
 
 <img src="~/Images/signpa.jpg" />
 <div class="row">
@@ -23,7 +23,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 @*<label asp-for="UserMail" class="control-label"></label>*@
-                <input asp-for="UserMail" class="form-control"  required placeholder="Email-Address" />
+                <input asp-for="UserMail" class="form-control" required placeholder="Email-Address" />
                 <span asp-validation-for="UserMail" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -49,13 +49,12 @@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
+            <div class="form-group-button">
+                <a href="/" class="back-link" >Go back</a>
+            </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-</body>
-</html>
+@*</body>
+</html>*@

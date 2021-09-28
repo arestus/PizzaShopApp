@@ -21,7 +21,6 @@ namespace PizzaOrderingSystemWebMVC.Services
             {
                 _context.Orders.Add(k);
                 _context.SaveChanges();
-                return k;
             }
             catch (DbUpdateConcurrencyException ducex)
             {
@@ -48,7 +47,20 @@ namespace PizzaOrderingSystemWebMVC.Services
 
         public Order Get(int id)
         {
-            throw new NotImplementedException();
+            Order order = null;
+            try
+            {
+                order = _context.Orders.FirstOrDefault(e => e.OrderId == id);
+            }
+            catch (ArgumentException ae)
+            {
+                Console.WriteLine(ae.Message);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return order;
         }
 
         public ICollection<Order> GetAll()
@@ -58,7 +70,33 @@ namespace PizzaOrderingSystemWebMVC.Services
 
         public Order Update(Order k)
         {
-            throw new NotImplementedException();
+            Order order = null;
+            try
+            {
+                order = _context.Orders.FirstOrDefault(e => e.OrderId == k.OrderId);
+                order.UserId = k.UserId;
+                order.TotalAmount = k.TotalAmount;
+                order.DelivaryCharges = k.DelivaryCharges;
+                order.Status = k.Status;
+                _context.SaveChanges();
+            }
+            catch (ArgumentException ae)
+            {
+                Console.WriteLine(ae.Message);
+            }
+            catch (DbUpdateConcurrencyException ducex)
+            {
+                Console.WriteLine(ducex.Message);
+            }
+            catch (DbUpdateException dbuex)
+            {
+                Console.WriteLine(dbuex.Message);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return order;
         }
     }
 }
