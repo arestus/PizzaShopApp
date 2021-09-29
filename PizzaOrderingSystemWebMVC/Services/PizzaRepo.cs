@@ -25,7 +25,7 @@ namespace PizzaOrderingSystemWebMVC.Services
 
         public PizzaDetail Get(int id)
         {
-                     PizzaDetail pizza = null;
+            PizzaDetail pizza = null;
             try
             {
                 pizza = _context.PizzaDetails.FirstOrDefault(e => e.PizzaNumber == id);
@@ -38,7 +38,7 @@ namespace PizzaOrderingSystemWebMVC.Services
             {
                 Console.WriteLine(e.Message);
             }
-            
+
             return pizza;
         }
 
@@ -55,5 +55,12 @@ namespace PizzaOrderingSystemWebMVC.Services
         {
             throw new NotImplementedException();
         }
+
+        public ICollection<PizzaDetail> GetOrderItemDetails(int Id)
+        {
+            IList<PizzaDetail> pizza = _context.PizzaDetails.Where(e => e.PizzaNumber == Id).ToList();
+            return pizza;
+        }
+
     }
 }

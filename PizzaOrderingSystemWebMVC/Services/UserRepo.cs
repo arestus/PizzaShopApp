@@ -70,6 +70,11 @@ namespace PizzaOrderingSystemWebMVC.Services
             return null;
         }
 
+        public ICollection<UserLoginDetail> GetOrderItemDetails(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
         public UserLoginDetail Update(UserLoginDetail k)
         {
             return null;

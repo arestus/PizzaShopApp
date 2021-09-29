@@ -57,5 +57,12 @@ namespace PizzaOrderingSystemWebMVC.Services
             }
             return toping;
         }
+        public ICollection<Topping> GetOrderItemDetails(int Id)
+        {
+
+            IList<Topping> toppingDetails = _context.Toppings.Where(e => e.ToppingNumber == Id).ToList();
+            return toppingDetails;
+        }
+
     }
 }
