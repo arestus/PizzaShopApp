@@ -1,0 +1,231 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container-fluid my-5 d-flex justify-content-center">
+        <div class="card card-1">
+            <div class="card-header bg-white">
+                <div class="media flex-sm-row flex-column-reverse justify-content-between ">
+                    <div class="col my-auto">
+                        <h4 class="mb-0"><span class="change-color">Order Details</span></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                @foreach (var item in ViewBag.PizzaDetails)
+                {
+                    <div class="row mt-4">
+                        <div class="col">
+                            <div class="card card-2">
+                                <div class="card-body">
+                                    <div class="media">
+                                        <div class="sq align-self-center "> <img class="img-fluid my-auto align-self-center mr-2 mr-md-4 pl-0 p-0 m-0" src="/Images/Pizzas/@(item.PizzaName).jpeg" width="135" height="135" /> </div>
+                                        <div class="media-body my-auto text-right">
+                                            <div class="row my-auto flex-column flex-md-row">
+                                                <div class="col my-auto">
+                                                    <h6 class="mb-0">Pizza Name - <span class="change-color"> @item.PizzaName</span></h6>
+                                                </div>
+                                                <div class="col-auto my-auto"> <h6>Pizza Price - <span class="change-color">$ @item.PizzaPrice</span></h6></div>
+                                                <div class="col-auto my-auto"> <h6>Pizza Type - <span class="change-color">@item.PizzaType</span></h6></div>
+                                             @model PizzaOrderingSystemWebMVC.Models.OutputList
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="my-3 ">
+                                    <div class="row">
+                                        <div class="col-md-3 mb-3"> <h6> Toppings <span><i class=" ml-2 fa fa-refresh" aria-hidden="true"></i></span></h6> </div>
+                                        @foreach (var topping in ViewBag.ToppingDetails)
+                                        {
+                                            <div class="col my-auto"> <h6>Topping Name - <span class="change-color">@topping.ToppingName</span></h6></div>
+                                            <div class="col my-auto"> <h6>Topping Price - <span class="change-color">$ @topping.ToppingPrice</span></h6></div>
+                                        }
+
+                                        @{
+                                            ViewData["Title"] = "Index";
+                                        }
+
+                                        @*<div class="col my-auto"> <small>Topping 2 | Rs.40</small></div>*@
+                                        <h1> Index </h1>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <p>
+                    <a asp-action="Create">Create New</a>
+                </p>
+                <div class="container-fluid my-5 d-flex justify-content-center">
+
+                    <div class="card card-1">
+
+                        <h4 class="mb-0"><span class="change-color">Order Details</span></h4>
+
+                        <div class="card-body">
+                            @foreach (var item in Model.FinalListPizzas)
+                            {
+
+                                <div class="row mt-4">
+                                    <div class="col">
+                                        <div class="row justify-content-between">
+                                            <div class="flex-sm-col text-right col">
+                                                <p class="mb-1"><b>Sub Total</b></p>
+                                            </div>
+                                            <div class="flex-sm-col col-auto">
+                                                <p class="mb-1">$ 35</p>
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-between">
+                                            <div class="flex-sm-col text-right col">
+                                                <p class="mb-1"><b>Delivery Charges</b></p>
+                                            </div>
+                                            <div class="flex-sm-col col-auto">
+                                                <p class="mb-1">$ 5</p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row justify-content-between">
+                                            <div class="flex-sm-col text-right col">
+                                                <p class="mb-1"><b>Total Amount</b></p>
+                                            </div>
+                                            <div class="flex-sm-col col-auto">
+                                                <p class="mb-1">$ 40</p>
+                                                <div class="card card-2">
+                                                    <div class="card-body">
+                                                        <div class="media">
+                                                            <div class="sq align-self-center">
+                                                                <img class="img-fluid my-auto align-self-center mr-2 mr-md-4 pl-0 p-0 m-0" src="/Images/Pizzas/@(item.Pizza.PizzaName).jpeg" width="135" height="135" />
+
+                                                            </div>
+                                                            <div class="media-body my-auto text-right">
+                                                                <div class="row my-auto flex-column flex-md-row">
+                                                                    <div class="mb-0">
+                                                                        <h6 class="mb-0">
+                                                                            Pizza Name - <span class="change-color"> @item.Pizza.PizzaName</span>
+                                                                            Price - <span class="change-color">$ @item.Pizza.PizzaPrice</span>
+                                                                            Pizza Type - <span class="change-color">@item.Pizza.PizzaType</span>
+
+                                                                        </h6>
+                                                                    </div>
+                                                                    <div class="col-auto my-auto">
+                                                                        <h6></h6>
+
+                                                                    </div>
+                                                                    <div class="col-auto my-auto">
+                                                                        <h6></h6>
+
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+                                                        <hr class="my-3">
+                                                        <div class="row">
+                                                            <div class="col-md-3 mb-3"> <h6> Toppings <span><i class=" ml-2 fa fa-refresh" aria-hidden="true"></i></span></h6> </div>
+                                                            @foreach (var topping in item.Toppings)
+                                                            {
+                                                                <div class="col my-auto"> <h6>Topping Name - <span class="change-color">@topping.ToppingName</span></h6></div>
+                                                                <div class="col my-auto"> <h6>Topping Price - <span class="change-color">$ @topping.ToppingPrice</span></h6></div>
+                                                            }
+
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="jumbotron-fluid">
+                                            <div class="row justify-content-between">
+                                                <div class="col-auto my-auto">
+                                                    @*<button class="btn btn-success">Confirm Order</button>*@
+                                                    <a href='@Url.Action("Confirm", "OrderDetail")'>
+                                                        <input type="button" value="Confirm Order" class="btn btn-success" />
+                                                    </a>
+
+                                                </div>
+
+                                            </div>
+                                            <div class="row mb-3 mt-3 mt-md-0">
+                                                <div class="col-auto border-line"> <small class="text-white">Sub-Total: $ 35</small></div>
+                                                <div class="col-auto border-line"> <small class="text-white">Delivery Charges: $ 5 </small></div>
+                                                <div class="col-auto "><small class="text-white">Total Amount: $ 40</small> </div>
+                                                }
+                                                <div class="jumbotron-fluid">
+                                                    <div class="row justify-content-between">
+                                                        <div class="col-auto my-auto">
+                                                            <a href='@Url.Action("Confirm", "OrderDetail")'>
+                                                                <input type="button" value="Confirm Order" class="btn btn-success" />
+                                                            </a>
+
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="row mb-3" mt-3 mt-md-0>
+                                                        <div class="col-auto border-line"><small class="text-white">Sub-Total: $ @(ViewBag.theOrder.TotalAmount - ViewBag.deliveryPrice)</small></div>
+                                                        <div class="col-auto border-line"> <small class="text-white">Delivery Charges: $ @ViewBag.deliveryPrice </small></div>
+                                                        <div class="col-auto"> <small class="text-white">Total Amount: $ @ViewBag.theOrder.TotalAmount</small></div>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+
+
+
+                        <div class="card-footer">
+                            <div class="jumbotron-fluid">
+                                <div class="row justify-content-between">
+                                    <div class="col-auto my-auto ">
+                                        @*<button class="btn btn-success">Confirm Order</button>*@
+                                        <a href='@Url.Action("Confirm","OrderDetail")'>
+                                            <input type="button" value="Confirm Order" class="btn btn-success" />
+                                        </a>
+                                    </div>
+                                    <div class="col-auto my-auto ">
+                                        @*<button class="btn btn-success">Confirm Order</button>*@
+                                        <a href='@Url.Action("Details","Pizza")'>
+                                            <input type="button" value="Reorder" class="btn btn-success" />
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="row mb-3 mt-3 mt-md-0">
+                                    <div class="col-auto border-line"> <small class="text-white">Sub-Total: $ 35</small></div>
+                                    <div class="col-auto border-line"> <small class="text-white">Delivery Charges: $ 5 </small></div>
+                                    <div class="col-auto "><small class="text-white">Total Amount: $ 40</small> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+﻿@model PizzaOrderingSystemWebMVC.Models.UserLoginDetail
+
+@*@{
+    Layout = null;
+}*@
+
+@*<!DOCTYPE html>*@
+
+<!--<-->@*html>
+<head>
+    <meta name="viewport" content="width=device-width" />*@
+    <title>UserRegistration</title>
+    <link rel="stylesheet" href="/css/UserRegistration.css" />
+    
+@*</head>
+<body>*@
+
+<img src="~/Images/signpa.jpg" />
+<div class="row">
+    <h1> SIGN-UP</h1>
+    <div class="col-md-4">
+        <form asp-action="UserRegistration">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                @*<label asp-for="UserMail" class="control-label"></label>*@
+                <input asp-for="UserMail" class="form-control" required placeholder="Email-Address" />
+                <span asp-validation-for="UserMail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="UserName" class="control-label"></label>*@
+                <input asp-for="UserName" class="form-control" required placeholder="UserName" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="UserPassword" class="control-label"></label>*@
+                <input asp-for="UserPassword" class="form-control" required placeholder="Password" />
+                <span asp-validation-for="UserPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="UserAddress" class="control-label"></label>*@
+                <input asp-for="UserAddress" class="form-control" required placeholder="Address" />
+                <span asp-validation-for="UserAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="UserPhone" class="control-label"></label>*@
+                <input asp-for="UserPhone" class="form-control" required placeholder="Phone" />
+                <span asp-validation-for="UserPhone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+            <div class="form-group-button">
+                <a href="/" class="back-link" >Go back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@*</body>
+</html>*@
