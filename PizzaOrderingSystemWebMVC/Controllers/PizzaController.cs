@@ -19,11 +19,10 @@ namespace PizzaOrderingSystemWebMVC.Controllers
         private readonly IRepo<OrderDetail> _repoOrderDetail;
         private readonly IRepo<Order> _repoOrder;
         private readonly pizzaContext _context;
-        IFormCollection frm;
 
-        public PizzaController(IRepo<PizzaDetail> repo, IRepo<Topping> repoToping, IRepo<OrderItemDetail> repoOrdItem, IRepo<OrderDetail> repoOrderDetail, IRepo<Order> repoOrder, pizzaContext context)
+        public PizzaController(pizzaContext context, IRepo<PizzaDetail> repo, IRepo<Topping> repoToping,
+            IRepo<OrderItemDetail> repoOrdItem, IRepo<OrderDetail> repoOrderDetail, IRepo<Order> repoOrder)
         {
-          
             _repo = repo;
             _repoToping = repoToping;
             _repoOrdItem = repoOrdItem;
@@ -37,33 +36,36 @@ namespace PizzaOrderingSystemWebMVC.Controllers
         {
 
             return View(_repo.GetAll());
-
-            //return RedirectToAction("Index", "Topping");
         }
         [HttpPost]
         public IActionResult Index(int id)
         {
             ViewBag.Message = _repo.Get(id);
 
-            return RedirectToAction("Details");
+            return RedirectToAction("Index", "Topping");
         }
 
         public IActionResult Details(int id)
         {
+            List<ToppingCheckModel> obj = new();
+            List<Topping> ttp = _repoToping.GetAll().ToList();
+            foreach (var item in ttp)
+            {
+                ToppingCheckModel t = new() { ToppingNumber = item.ToppingNumber, ToppingName = item.ToppingName, ToppingPrice = item.ToppingPrice, IsChecked = false };
+                obj.Add(t);
+            }
 
-
+            ToppingList objBind = new ToppingList();
+            objBind.Toppingss = obj;
             ViewBag.thePizza = _repo.Get(id);
-           
-
-            //return RedirectToAction("Index", "Topping");
-            return View(_repoToping.GetAll());
+            return View(objBind);
         }
         [HttpPost]
-        public IActionResult Details(IFormCollection frm)
+        public IActionResult Details(ToppingList Obj)
         {
-          //  UserLoginDetail user;
+
             Order newOrder;
-            int TotalAmount = 0;
+            int price = Convert.ToInt32(TempData.Peek("pizzaPrice"));
             ViewBag.loginname = TempData.Peek("loginname");
             foreach (var item in _context.UserLoginDetails)
             {
@@ -72,14 +74,9 @@ namespace PizzaOrderingSystemWebMVC.Controllers
                     TempData["userid"] = item.UserId;
                 }
             }
-            ViewBag.id = TempData.Peek("userid");
-            int price = Convert.ToInt32(TempData.Peek("pizzaPrice"));
-            
-            
-
             if (TempData.Peek("orderId") == null)
             {
-                newOrder = new() { UserId = ViewBag.id /*@TempData.Peek("UserId")*/, TotalAmount = 0, DelivaryCharges = 0};
+                newOrder = new() { UserId = Convert.ToInt32(TempData.Peek("userid")), TotalAmount = 0, };
 
                 _repoOrder.Add(newOrder);
                 TempData["orderId"] = newOrder.OrderId;
@@ -95,86 +92,22 @@ namespace PizzaOrderingSystemWebMVC.Controllers
                 PizzaNumber = Convert.ToInt32(TempData.Peek("pizzaChoise"))
             };
             _repoOrderDetail.Add(orderDetail);
-            // TempData["ids"] = ViewBag.ids;
-            // int View = Convert.ToInt32(TempData.Peek("id"));
 
 
-
-            // ViewBag.number =  TempData.Peek("id");
-
-            //ViewBag.Name = 1;
-
-            //string  item_number = frm["Olive"].ToString();
-            int number;
-            string item_number;
-            try
-            {
-                item_number = frm["Olive"].ToString();
-                number = Convert.ToInt32(item_number);
-            }
-            catch (Exception)
+            foreach (var item in Obj.Toppingss)
             {
 
-                item_number = frm["Olive"].ToString();
-                number = Convert.ToInt32(item_number);
+                if (item.IsChecked)
+                {
+                    OrderItemDetail itemOrder = new() { ItemNumber = orderDetail.ItemNumber, ToppingNumber = item.ToppingNumber };
+                    price += (int)_repoToping.Get(item.ToppingNumber).ToppingPrice;
+                    _repoOrdItem.Add(itemOrder);
+                }
             }
-            
 
-            OrderItemDetail itemOrder = new() { ItemNumber = orderDetail.ItemNumber, ToppingNumber = number};
-            price += (int)_repoToping.Get(number).ToppingPrice;
-            _repoOrdItem.Add(itemOrder);
-
-
-            //OrderItemDetail itemOrder = new() { ItemNumber = orderDetail.ItemNumber, ToppingNumber = ViewBag.number };
-            ////// price += (int)_repoToping.Get(pri).ToppingPrice;
-            //_repoOrdItem.Add(itemOrder);
-
-            //{
-            //    OrderItemDetail itemOrder = new() { ItemNumber = orderDetail.ItemNumber, ToppingNumber = item };
-            //    price += (int)_repoToping.Get(item).ToppingPrice;
-            //    _repoOrdItem.Add(itemOrder);
-            //}
             newOrder.TotalAmount += price;
-            //TempData["TotalAmount"] = newOrder.TotalAmount;
-            if (TotalAmount > 50)
-            {
-                newOrder.DelivaryCharges = 5;
-                newOrder.Status = "confirmed";
-            }
-            else
-            {
-                newOrder.DelivaryCharges = 2;
-                newOrder.Status = "confirmed";
-            }
-            
             _repoOrder.Update(newOrder);
-            //  ViewBag.BirdSighting = TempData.Peek("pizzaChoise");
-            // return RedirectToAction("Index");
-            // TempData["TotalAmount"] = newOrder.TotalAmount;
-           
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Pizza");
         }
-     
-        public  int  CheckRadio(IFormCollection frm)
-        {
-            
-            int number;
-            string item_number;
-            try
-            {
-                item_number = frm["Olive"].ToString();
-                 number = Convert.ToInt32(item_number);
-            }
-            catch (Exception)
-            {
-
-                item_number = frm["Olive"].ToString();
-                 number = Convert.ToInt32(item_number);
-            }
-         
-            
-           
-            return number;
-        }
-        }
+    }
 }
