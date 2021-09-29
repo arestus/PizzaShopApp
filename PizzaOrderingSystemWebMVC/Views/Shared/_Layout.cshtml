@@ -10,30 +10,10 @@
     <link rel="stylesheet" href="/css/HomePage.css">
 </head>
 <body>
-    @*<header>
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-                <div class="container">
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">PizzaOrderingSystemWebMVC</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </header>*@
     <header class="header">
         <section class="container">
             <div class="header-block">
+                    @*<img src="~/Images/Logo.png" width="100" height="40" alt="Logo"/>*@
                 <a class="logo-link">
                     BIPR Pizza
                 </a>
@@ -46,23 +26,12 @@
             </div>
         </section>
     </header>
-    @*<div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>*@
     <div>
         <main role="main" class="pb-3">
             @RenderBody()
             
         </main>
     </div>
-
-    @*<footer class="border-top footer text-muted">
-            <div class="container">
-                &copy; 2021 - PizzaOrderingSystemWebMVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-            </div>
-        </footer>*@
     <footer class="footer">
         <section class="container">
             <div class="footer-info">
