@@ -32,15 +32,14 @@ namespace MVCPIzzaOrderingApplication.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.Id = TempData.Peek("orderId");
-
-           
-            ViewBag.ItemDetails = _repo.GetOrderItemDetails(ViewBag.Id);
-             IList<PizzaDetail> pizzas = null;
+            ViewBag.ItemDetails = _repo.GetOrderItemDetails(Convert.ToInt32(TempData.Peek("orderId")));
+                                // IList<PizzaDetail> pizzas = null;
             IList<OrderItemDetail> items = null;
             IList<Topping> toppings = null;
-              List<FinalOutputModel> obj = new();
-          
+
+            List<FinalOutputModel> obj = new();
+           
+
             foreach (var item in ViewBag.ItemDetails)
             {
                 FinalOutputModel output = new();
@@ -58,8 +57,8 @@ namespace MVCPIzzaOrderingApplication.Controllers
                     int toppingnumber = itemtopping.ToppingNumber;
                     toppings = (IList<Topping>)_topping.GetOrderItemDetails(toppingnumber);
                     ViewBag.ToppingDetails = toppings;
-
-                    Topping topping = _topping.Get(itemtopping.ToppingNumber);
+                    
+                   Topping topping = _topping.Get(itemtopping.ToppingNumber);
                     output.Toppings.Add(topping);
                     int orderId = Convert.ToInt32(TempData.Peek("orderId"));
                     Order order = _repoOrder.Get(orderId);
@@ -73,12 +72,11 @@ namespace MVCPIzzaOrderingApplication.Controllers
                         ViewBag.deliveryPrice = 0;
                     }
                     ViewBag.theOrder = order;
+                               
                 }
                 obj.Add(output);
             }
-            ViewBag.PizzaDetails = pizzas;
-            return View(_repo.GetOrderItemDetails(ViewBag.Id));
-#pragma warning disable CS0162 // Unreachable code detected
+            // ViewBag.PizzaDetails = pizzas;
             OutputList objBind = new();
 #pragma warning restore CS0162 // Unreachable code detected
             objBind.FinalListPizzas = obj;
