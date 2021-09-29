@@ -60,5 +60,10 @@ namespace PizzaOrderingSystemWebMVC.Services
         {
             throw new NotImplementedException();
         }
+        public ICollection<OrderItemDetail> GetOrderItemDetails(int Id)
+        {
+            IList<OrderItemDetail> itemDetails = _context.OrderItemDetails.Where(e => e.ItemNumber == Id).ToList();
+            return itemDetails;
+        }
     }
 }

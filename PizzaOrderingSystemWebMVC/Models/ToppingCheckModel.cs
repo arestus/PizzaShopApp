@@ -10,7 +10,7 @@ namespace PizzaOrderingSystemWebMVC.Models
         public int ToppingNumber { get; set; }
         public string ToppingName { get; set; }
         public int? ToppingPrice { get; set; }
-      
+
         public bool IsChecked { get; set; }
     }
     public class ToppingList

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace PizzaOrderingSystemWebMVC.Services
-{ 
-     public interface IRepo<K>
-        {   
+{
+    public interface IRepo<K>
+    {
         K Add(K k);
         ICollection<K> GetAll();
 
@@ -14,5 +14,6 @@ namespace PizzaOrderingSystemWebMVC.Services
         K Update(K k);
 
         K Delete(int id);
-        }
+        ICollection<K> GetOrderItemDetails(int Id);
+    }
 }

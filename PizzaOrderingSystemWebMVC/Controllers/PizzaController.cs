@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using PizzaOrderingSystemWebMVC.Models;
 
 using PizzaOrderingSystemWebMVC.Services;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace PizzaOrderingSystemWebMVC.Controllers
 {
@@ -19,7 +21,7 @@ namespace PizzaOrderingSystemWebMVC.Controllers
         private readonly IRepo<Order> _repoOrder;
         private readonly pizzaContext _context;
 
-        public PizzaController(pizzaContext context, IRepo<PizzaDetail> repo, IRepo<Topping> repoToping, 
+        public PizzaController(pizzaContext context, IRepo<PizzaDetail> repo, IRepo<Topping> repoToping,
             IRepo<OrderItemDetail> repoOrdItem, IRepo<OrderDetail> repoOrderDetail, IRepo<Order> repoOrder)
         {
             _repo = repo;
@@ -47,7 +49,7 @@ namespace PizzaOrderingSystemWebMVC.Controllers
         public IActionResult Details(int id)
         {
             List<ToppingCheckModel> obj = new();
-            List < Topping > ttp = _repoToping.GetAll().ToList();
+            List<Topping> ttp = _repoToping.GetAll().ToList();
             foreach (var item in ttp)
             {
                 ToppingCheckModel t = new() { ToppingNumber = item.ToppingNumber, ToppingName = item.ToppingName, ToppingPrice = item.ToppingPrice, IsChecked = false };
@@ -62,7 +64,7 @@ namespace PizzaOrderingSystemWebMVC.Controllers
         [HttpPost]
         public IActionResult Details(ToppingList Obj)
         {
-           
+
             Order newOrder;
             int price = Convert.ToInt32(TempData.Peek("pizzaPrice"));
             ViewBag.loginname = TempData.Peek("loginname");
@@ -103,7 +105,7 @@ namespace PizzaOrderingSystemWebMVC.Controllers
                     _repoOrdItem.Add(itemOrder);
                 }
             }
-         
+
             newOrder.TotalAmount += price;
             _repoOrder.Update(newOrder);
             return RedirectToAction("Index", "Pizza");

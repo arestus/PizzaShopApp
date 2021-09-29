@@ -68,6 +68,11 @@ namespace PizzaOrderingSystemWebMVC.Services
             throw new NotImplementedException();
         }
 
+        public ICollection<Order> GetOrderItemDetails(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Order Update(Order k)
         {
             Order order = null;
