@@ -110,7 +110,7 @@ namespace PizzaOrderingSystemWebMVC.Controllers
 
             newOrder.TotalAmount += price;
             _repoOrder.Update(newOrder);
-            return RedirectToAction("Index", "Pizza");
+            return RedirectToAction("Index", "OrderDetail");
         }
     }
 }
