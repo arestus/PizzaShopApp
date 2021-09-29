@@ -5,6 +5,7 @@ using PizzaOrderingSystemWebMVC.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace PizzaOrderingSystemWebMVC.Controllers
@@ -16,14 +17,17 @@ namespace PizzaOrderingSystemWebMVC.Controllers
         private readonly IRepo<OrderItemDetail> _repoOrdItem;
         private readonly IRepo<OrderDetail> _repoOrderDetail;
         private readonly IRepo<Order> _repoOrder;
+        private readonly pizzaContext _context;
 
-        public PizzaController(IRepo<PizzaDetail> repo, IRepo<Topping> repoToping, IRepo<OrderItemDetail> repoOrdItem, IRepo<OrderDetail> repoOrderDetail, IRepo<Order> repoOrder)
+        public PizzaController(pizzaContext context, IRepo<PizzaDetail> repo, IRepo<Topping> repoToping, 
+            IRepo<OrderItemDetail> repoOrdItem, IRepo<OrderDetail> repoOrderDetail, IRepo<Order> repoOrder)
         {
             _repo = repo;
             _repoToping = repoToping;
             _repoOrdItem = repoOrdItem;
             _repoOrderDetail = repoOrderDetail;
             _repoOrder = repoOrder;
+            _context = context;
         }
 
 
@@ -42,19 +46,36 @@ namespace PizzaOrderingSystemWebMVC.Controllers
 
         public IActionResult Details(int id)
         {
+            List<ToppingCheckModel> obj = new();
+            List < Topping > ttp = _repoToping.GetAll().ToList();
+            foreach (var item in ttp)
+            {
+                ToppingCheckModel t = new() { ToppingNumber = item.ToppingNumber, ToppingName = item.ToppingName, ToppingPrice = item.ToppingPrice, IsChecked = false };
+                obj.Add(t);
+            }
 
-
+            ToppingList objBind = new ToppingList();
+            objBind.Toppingss = obj;
             ViewBag.thePizza = _repo.Get(id);
-            return View(_repoToping.GetAll());
+            return View(objBind);
         }
         [HttpPost]
-        public IActionResult Details()
+        public IActionResult Details(ToppingList Obj)
         {
+           
             Order newOrder;
             int price = Convert.ToInt32(TempData.Peek("pizzaPrice"));
+            ViewBag.loginname = TempData.Peek("loginname");
+            foreach (var item in _context.UserLoginDetails)
+            {
+                if (ViewBag.loginname == item.UserMail)
+                {
+                    TempData["userid"] = item.UserId;
+                }
+            }
             if (TempData.Peek("orderId") == null)
             {
-                newOrder = new() { UserId = 1 /*@TempData.Peek("UserId")*/, TotalAmount = 0, };
+                newOrder = new() { UserId = Convert.ToInt32(TempData.Peek("userid")), TotalAmount = 0, };
 
                 _repoOrder.Add(newOrder);
                 TempData["orderId"] = newOrder.OrderId;
@@ -70,17 +91,22 @@ namespace PizzaOrderingSystemWebMVC.Controllers
                 PizzaNumber = Convert.ToInt32(TempData.Peek("pizzaChoise"))
             };
             _repoOrderDetail.Add(orderDetail);
-            int[] arr = { 1, 2 };
-            foreach (var item in arr)
+
+
+            foreach (var item in Obj.Toppingss)
             {
-                OrderItemDetail itemOrder = new() { ItemNumber = orderDetail.ItemNumber, ToppingNumber = item };
-                price += (int)_repoToping.Get(item).ToppingPrice;
-                _repoOrdItem.Add(itemOrder);
+
+                if (item.IsChecked)
+                {
+                    OrderItemDetail itemOrder = new() { ItemNumber = orderDetail.ItemNumber, ToppingNumber = item.ToppingNumber };
+                    price += (int)_repoToping.Get(item.ToppingNumber).ToppingPrice;
+                    _repoOrdItem.Add(itemOrder);
+                }
             }
+         
             newOrder.TotalAmount += price;
             _repoOrder.Update(newOrder);
-            //  ViewBag.BirdSighting = TempData.Peek("pizzaChoise");
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Pizza");
         }
     }
 }

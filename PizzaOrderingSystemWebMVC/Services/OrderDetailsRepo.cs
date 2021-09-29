@@ -50,6 +50,14 @@ namespace PizzaOrderingSystemWebMVC.Services
         public ICollection<OrderDetail> GetAll()
         {
             throw new NotImplementedException();
+        } 
+        public ICollection<OrderDetail> GetAll(int orderId)
+        {
+            List<OrderDetail> orderDetails = _context.OrderDetails.Where(e=> e.OrderId==orderId).ToList();
+            if (orderDetails.Count > 0)
+                return orderDetails;
+            else
+                return null;
         }
 
         public OrderDetail Update(OrderDetail k)

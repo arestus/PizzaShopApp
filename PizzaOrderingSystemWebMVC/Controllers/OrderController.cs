@@ -15,7 +15,9 @@ namespace PizzaOrderingSystemWebMVC.Controllers
         private readonly IRepo<Order> _repos;
         private readonly pizzaContext _context;
         private readonly IRepo<Topping> _tops;
-        private readonly UserLoginDetail _cont;
+        private readonly IRepo<OrderItemDetail> _repoOrdItem;
+        private readonly IRepo<OrderDetail> _repoOrderDetail;
+        // private readonly UserLoginDetail _cont;
 
 
         public OrderController(IRepo<PizzaDetail> repo, IRepo<Order> repos, pizzaContext context, IRepo<Topping> tops)
@@ -34,6 +36,13 @@ namespace PizzaOrderingSystemWebMVC.Controllers
         //    return (_context.Get(id));
 
         //}
+        public IActionResult Index()
+        {
+            List<viewBillingModel> bills = new();
+            int orderId = Convert.ToInt32(TempData.Peek("orderId"));
+           
+            return View();
+        }
         public IActionResult PizzaList(PizzaDetail pizz)
         {
 

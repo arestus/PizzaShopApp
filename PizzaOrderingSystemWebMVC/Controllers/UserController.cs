@@ -40,8 +40,9 @@ namespace PizzaOrderingSystemWebMVC.Controllers
             if (_context.UserLoginDetails.Where(e => e.UserMail == user.UserMail && e.UserPassword == user.UserPassword).Any())
             {
                 TempData["username"] = user.UserMail;
-
-                 // return RedirectToAction("Index", "Home");
+                TempData["loginname"] = user.UserMail;
+                TempData["orderId"] = null;
+                // return RedirectToAction("Index", "Home");
                 return RedirectToAction("Index", "Pizza");
                 //  return RedirectToAction("Orders", "Order");
             }
