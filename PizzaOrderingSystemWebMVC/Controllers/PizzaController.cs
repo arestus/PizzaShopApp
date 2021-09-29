@@ -57,6 +57,7 @@ namespace PizzaOrderingSystemWebMVC.Controllers
             }
 
             ToppingList objBind = new ToppingList();
+            
             objBind.Toppingss = obj;
             ViewBag.thePizza = _repo.Get(id);
             return View(objBind);
