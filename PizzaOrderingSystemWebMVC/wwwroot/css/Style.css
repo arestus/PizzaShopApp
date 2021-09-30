@@ -3,7 +3,7 @@
     background-size: cover;
     font-family: 'Lato', sans-serif;
     color: rgba(116, 116, 116, 0.667);
-    background: linear-gradient(140deg, #fff, 50%, #BA68C8)
+    /*background: linear-gradient(140deg, #fff, 50%, #BA68C8)*/
 }
 
 .container-fluid {
@@ -20,6 +20,7 @@ p {
 }
 
 .card-1 {
+    padding: 10px;
     box-shadow: 2px 2px 10px 0px rgb(190, 108, 170)
 }
 
@@ -32,6 +33,7 @@ hr {
 }
 
 .change-color {
+    margin-left: 15px;
     color: #AB47BC !important
 }
 
@@ -105,4 +107,26 @@ h2 {
 .border-line {
     border-right: 1px solid rgb(226, 206, 226)
 }
+.confirm-order {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.logo-link {
+    text-decoration: none;
+    color: black;
+}
 
+.confirm-main {
+    margin-top: 100px;
+}
+.confirm-button {
+    
+}
+.inside-confirm {
+    text-align:center;
+    margin: auto;
+}
+a {
+    text-decoration: none;
+    color: black;
+}

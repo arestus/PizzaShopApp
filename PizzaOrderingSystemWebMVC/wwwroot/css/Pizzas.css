@@ -1,0 +1,11 @@
+﻿.button-finish {
+    display: flex;
+    justify-content: center;
+}
+.finish-link-button:hover {
+    background-color: #007bff;
+}
+a {
+    text-decoration: none;
+    color: black;
+}

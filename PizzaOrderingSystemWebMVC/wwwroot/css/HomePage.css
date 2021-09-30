@@ -90,6 +90,10 @@ li {
 }
 
 .pb-3 {
-    /*min-height: 600px;*/
+    min-height: 500px;
     background-color: white;
+}
+a {
+    text-decoration: none;
+    color: black;
 }

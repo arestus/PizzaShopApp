@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MVCPIzzaOrderingApplication.Controllers
+namespace PizzaOrderingSystemWebMVC.Controllers
 {
     public class OrderDetailController : Controller
     {

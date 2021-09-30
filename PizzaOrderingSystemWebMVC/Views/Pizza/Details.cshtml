@@ -2,55 +2,61 @@
 @{
     ViewData["Title"] = "Details";
 }
+<link rel="stylesheet" href="/css/DetailsPage.css" />
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 @{ TempData["pizzaChoise"] = @ViewBag.thePizza.PizzaNumber;
     TempData["pizzaPrice"] = @ViewBag.thePizza.PizzaPrice;
 }
 
-<h1>Details</h1>
+<div class="container details">
+    <div class="pizza-info">
+        <div class="row">
+            <div>
+                <div class="card">
+                    <img src="/Images/Pizzas/@(ViewBag.thePizza.PizzaName).jpeg" class="card-img-top" alt="..." style="height: 230px;">
+                    <div class="card-body">
 
-<div>
-    <h4>Chose topping</h4>
-    <div class="row">
-        <div class="col-lg-4 mb-4">
-            <div class="card">
-                <img src="/Images/Pizzas/@(ViewBag.thePizza.PizzaName).jpeg" class="card-img-top" alt="..." style="height: 230px;">
-                <div class="card-body">
+                        <h5 class="card-title text-center">@ViewBag.thePizza.PizzaName</h5>
 
-                    <h5 class="card-title text-center">@ViewBag.thePizza.PizzaName</h5>
+                        <h6 class="card-text">Prise $@ViewBag.thePizza.PizzaPrice</h6>
+                        <h6 class="card-text">@ViewBag.thePizza.PizzaType</h6>
 
-                    <h6 class="card-text">Prise $@ViewBag.thePizza.PizzaPrice</h6>
-                    <h6 class="card-text">@ViewBag.thePizza.PizzaType</h6>
-
-                    <p class="card-text">Some pizza descriptions on the card title and make up the bulk of the card's content.</p>
+                        <p class="card-text">Some pizza descriptions on the card title and make up the bulk of the card's content.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<form asp-action="Details" method="post">
-    <div class="col-lg-4 mb-4">
-        <h2>Chose topping</h2>
+    <div>
+        <form asp-action="Details" method="post">
+            <div>
+                @using (Html.BeginForm())
+                {
+                    for (int i = 0; i < Model.Toppingss.Count; i++)
+                    {
+                        <p>
+                            @Html.CheckBoxFor(m => Model.Toppingss[i].IsChecked)
+                            @Model.Toppingss[i].ToppingName
+                            @Model.Toppingss[i].ToppingPrice
+                            @Html.HiddenFor(m => Model.Toppingss[i].ToppingPrice)
+                            @Html.HiddenFor(m => Model.Toppingss[i].ToppingNumber)
+                            @Html.HiddenFor(m => Model.Toppingss[i].ToppingName)
+                        </p>
 
-        @using (Html.BeginForm())
-        {
-            for (int i = 0; i < Model.Toppingss.Count; i++)
-            {
 
-                @Html.CheckBoxFor(m => Model.Toppingss[i].IsChecked)
-                @Model.Toppingss[i].ToppingName
-                @Model.Toppingss[i].ToppingPrice
-                @Html.HiddenFor(m => Model.Toppingss[i].ToppingPrice)
-                @Html.HiddenFor(m => Model.Toppingss[i].ToppingNumber)
-                @Html.HiddenFor(m => Model.Toppingss[i].ToppingName)<br />
-
-            }
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Add to order" class="btn btn-primary w-50" />
+                    }
+                    <div class="add-order">
+                        <input type="submit" value="Add to order" class="btn btn-primary w-100" />
+                    </div>
+                    <div class="add-order">
+                        <a href="/Pizza" class="btn btn-warning w-100 another">Choose another pizza</a>
+                    </div>
+                    <div class="add-order">
+                        <a href="/OrderDetail/Index" class="btn btn-success w-100">Finish orders</a>
+                    </div>
+                    @*@ViewBag.Loc*@
+                }
             </div>
-            @ViewBag.Loc
-        }
-
-
+        </form>
     </div>
-</form>
+</div>
