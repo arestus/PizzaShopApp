@@ -93,3 +93,7 @@ li {
     min-height: 500px;
     background-color: white;
 }
+a {
+    text-decoration: none;
+    color: black;
+}

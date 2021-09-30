@@ -18,3 +18,7 @@
 .card { 
     width: 400px;
 }
+a {
+    text-decoration: none;
+    color: black;
+}

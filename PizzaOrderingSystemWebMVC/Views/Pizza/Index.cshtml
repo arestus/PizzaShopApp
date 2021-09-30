@@ -4,12 +4,13 @@
     ViewData["Title"] = "Index";
 }
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-
+<link rel="stylesheet" href="/css/Pizzas.css" />
 
 <div class="container">
     <h1 class="text-center">
         Chose your pizza
     </h1>
+
     <br />
     <div class="row">
         @foreach (var item in Model)
@@ -33,9 +34,7 @@
             </div>
         }
     </div>
-
-
-
-
-
 </div>
+    <div class="button-finish">
+        <a href="/OrderDetail/Index" class="btn border-primary w-50 finish-link-button">Finish orders</a>
+    </div>
